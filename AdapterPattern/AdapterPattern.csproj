@@ -42,15 +42,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Lib\IFileAdapter.cs" />
-    <Compile Include="Lib\ImageFileAdapter.cs" />
-    <Compile Include="Lib\ImageLoader.cs" />
-    <Compile Include="Lib\FileManager.cs" />
+    <Compile Include="Client\Document.cs" />
+    <Compile Include="Client\DocumentType.cs" />
+    <Compile Include="Adapter\IFileAdapter.cs" />
+    <Compile Include="Adapter\FileAdapter.cs" />
+    <Compile Include="Library\CloudImageLoader.cs" />
+    <Compile Include="Client\FileManager.cs" />
+    <Compile Include="Helpers\StreamHelper.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
