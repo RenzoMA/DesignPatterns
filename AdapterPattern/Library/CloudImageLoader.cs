@@ -9,10 +9,11 @@ namespace AdapterPattern.Library
 {
     class CloudImageLoader
     {
+        private string baseUrl = "http://cloud.com/images";
         protected virtual async Task<string> Load(byte[] imageArrayBytes)
         {
             await Task.Delay(2000);
-            var url = $"http://cloud.com/images/{Guid.NewGuid()}";
+            var url = $"{baseUrl}/{Guid.NewGuid()}";
             return url;
         }
     }
