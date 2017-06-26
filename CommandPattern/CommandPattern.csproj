@@ -43,8 +43,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Command\ICommand.cs" />
-    <Compile Include="ConcreteCommand\NavigateBack.cs" />
-    <Compile Include="ConcreteCommand\NavigateForward.cs" />
+    <Compile Include="ConcreteCommand\NavigateCommand.cs" />
     <Compile Include="Invoker\AddressBar.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -53,8 +52,6 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Client\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

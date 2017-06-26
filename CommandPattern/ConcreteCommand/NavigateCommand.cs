@@ -8,18 +8,19 @@ using CommandPattern.Receiver;
 
 namespace CommandPattern.ConcreteCommand
 {
-    class NavigateForward : ICommand
+    class NavigateCommand : ICommand
     {
         private readonly Browser _browser;
-
-        public NavigateForward(Browser browser)
+        private readonly string _url;
+        public NavigateCommand(Browser browser, string url)
         {
             _browser = browser;
+            _url = url;
         }
 
         public void Execute()
         {
-            _browser.GoForward();
+            _browser.DisplayNewPage(_url);
         }
     }
 }
