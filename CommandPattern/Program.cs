@@ -12,20 +12,20 @@ namespace CommandPattern
 {
     class Program
     {
-        private static List<string> urls = new List<string>()
+        public static IEnumerable<string> Urls()
         {
-            "http://www.google.com",
-            "http://www.microsoft.com",
-            "http://www.visualstudio.com",
-            "http://www.github.com",
-            "http://www.commands.com",
-            "http://www.apple.com",
-        };
+            yield return "http://www.google.com";
+            yield return "http://www.microsoft.com";
+            yield return "http://www.visualstudio.com";
+            yield return "http://www.github.com";
+            yield return "http://www.commands.com";
+            yield return "http://www.apple.com";
+        }
         static void Main(string[] args)
         {
             NewBrowser browser = new NewBrowser();
             AddressBar addressBar = new AddressBar();
-            foreach (string url in urls)
+            foreach (string url in Urls())
             {
                 ICommand command = new NavigateCommand(browser, url);
                 addressBar.Navigate(command);
