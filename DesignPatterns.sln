@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26228.12
+VisualStudioVersion = 15.0.26403.7
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdapterPattern", "AdapterPattern\AdapterPattern.csproj", "{9243C577-22A7-4249-8D1A-A4EE91B21617}"
 EndProject
@@ -10,6 +10,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BuilderPattern", "BuilderPattern\BuilderPattern.csproj", "{5FBA2284-D524-4121-93F9-81EA9121202C}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChainOfResponsibilityPattern", "ChainOfResponsibility\ChainOfResponsibilityPattern.csproj", "{1A65F9A2-6931-4842-9168-4FF5F2226B3F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CommandPattern", "CommandPattern\CommandPattern.csproj", "{A7718510-99AF-47DA-93AA-D837EB563DED}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{1A65F9A2-6931-4842-9168-4FF5F2226B3F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1A65F9A2-6931-4842-9168-4FF5F2226B3F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1A65F9A2-6931-4842-9168-4FF5F2226B3F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A7718510-99AF-47DA-93AA-D837EB563DED}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A7718510-99AF-47DA-93AA-D837EB563DED}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A7718510-99AF-47DA-93AA-D837EB563DED}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A7718510-99AF-47DA-93AA-D837EB563DED}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
