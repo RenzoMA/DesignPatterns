@@ -10,9 +10,9 @@ namespace CommandPattern.ConcreteCommand
 {
     class NavigateCommand : ICommand
     {
-        private readonly Browser _browser;
+        private readonly GenericBrowser _browser;
         private readonly string _url;
-        public NavigateCommand(Browser browser, string url)
+        public NavigateCommand(NewBrowser browser, string url)
         {
             _browser = browser;
             _url = url;
@@ -20,7 +20,7 @@ namespace CommandPattern.ConcreteCommand
 
         public void Execute()
         {
-            _browser.DisplayNewPage(_url);
+            _browser.Navigate(_url);
         }
     }
 }

@@ -21,12 +21,21 @@ namespace CommandPattern.Invoker
 
         public void GoBack()
         {
-            _commands[--current].Execute();
+            var command = _commands.ElementAtOrDefault(--current);
+            if (command != null)
+                command.Execute();
+            else
+                ++current;
+
         }
 
         public void GoForward()
         {
-            _commands[++current].Execute();
+            var command = _commands.ElementAtOrDefault(++current);
+            if (command == null)
+                --current;
+            else
+                command.Execute();
         }
     }
 }

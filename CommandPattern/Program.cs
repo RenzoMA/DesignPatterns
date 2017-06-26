@@ -12,29 +12,35 @@ namespace CommandPattern
 {
     class Program
     {
+        private static List<string> urls = new List<string>()
+        {
+            "http://www.google.com",
+            "http://www.microsoft.com",
+            "http://www.visualstudio.com",
+            "http://www.github.com",
+            "http://www.commands.com",
+            "http://www.apple.com",
+        };
         static void Main(string[] args)
         {
-            Browser browser = new Browser();
-            ICommand navigateCommand = new NavigateCommand(browser, "http://google.com.pe");
-            browser.Navigate(navigateCommand);
-            ICommand navigateCommand1 = new NavigateCommand(browser, "http://microsoft.come");
-            browser.Navigate(navigateCommand1);
-            ICommand navigateCommand2 = new NavigateCommand(browser, "http://apple.co");
-            browser.Navigate(navigateCommand2);
-            ICommand navigateCommand3 = new NavigateCommand(browser, "http://linux.com");
-            browser.Navigate(navigateCommand3);
-
-
+            NewBrowser browser = new NewBrowser();
+            AddressBar addressBar = new AddressBar();
+            foreach (string url in urls)
+            {
+                ICommand command = new NavigateCommand(browser, url);
+                addressBar.Navigate(command);
+            }
+            
             while (true)
             {
                 string action = Console.ReadLine();
                 if (action == "back")
                 {
-                    browser.GoBack();
+                    addressBar.GoBack();
                 }
                 else if(action == "forward")
                 {
-                    browser.GoForward();
+                    addressBar.GoForward();
                 }
             }
         }
