@@ -1,11 +1,8 @@
 ﻿using AdapterPattern.Adapter;
-using AdapterPattern.Client;
+using AdapterPattern.Entities;
+using AdapterPattern.Library;
 using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace AdapterPattern
 {
@@ -13,10 +10,25 @@ namespace AdapterPattern
     {
         static void Main(string[] args)
         {
-            IFileAdapter imageFileAdapter = new FileAdapter();
+            InvokeOldClient();
+            InvokeNewClient();
+        }
+        static void InvokeNewClient()
+        {
+            Console.WriteLine("");
+            Console.WriteLine("-- NEW CLIENT --");
             Stream stream = new MemoryStream(100);
-            FileManager fileManager = new FileManager(imageFileAdapter, DocumentType.Image);
-            var result = fileManager.Save(stream).Result;
+            IFile imageFileAdapter = new FileAdapter();
+            var result = imageFileAdapter.Upload(stream, DocumentType.Image).Result;
+            Console.ReadKey();
+
+        }
+        static void InvokeOldClient()
+        {
+            Console.WriteLine("-- OLD CLIENT --");
+            byte[] imageArray = new byte[1200];
+            CloudImageLoader imageLoader = new CloudImageLoader();
+            var result = imageLoader.Load(imageArray).Result;
             Console.ReadKey();
         }
     }

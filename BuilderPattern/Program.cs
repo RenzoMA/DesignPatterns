@@ -28,11 +28,11 @@ namespace BuilderPattern
         }
         static void ShowDetail(Armor armor)
         {
-            Console.WriteLine(String.Format("Model: {0}", armor.Model));
-            Console.WriteLine(String.Format("Helmet: {0}", armor.Helmet));
-            Console.WriteLine(String.Format("Color: {0}", armor.Color));
-            Console.WriteLine(String.Format("Body: {0}", armor.Body));
-            armor.Accessories.ForEach(accessory => Console.WriteLine(String.Format("Accessories: {0}", accessory)));
+            Console.WriteLine("Model: {0}", armor.Model);
+            Console.WriteLine("Helmet: {0}", armor.Helmet);
+            Console.WriteLine("Color: {0}", armor.Color);
+            Console.WriteLine("Body: {0}", armor.Body);
+            armor.Accessories.ForEach(accessory => Console.WriteLine("Accessories: {0}", accessory));
         }
     }
 }
