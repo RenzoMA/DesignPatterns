@@ -7,6 +7,8 @@ using System.Threading.Tasks;
 using CompositePattern.Component;
 using CompositePattern.Composite;
 using CompositePattern.Leaf;
+using static System.Net.Mime.MediaTypeNames;
+using System.Reflection;
 
 namespace CompositePattern
 {
@@ -14,49 +16,60 @@ namespace CompositePattern
     {
         static void Main(string[] args)
         {
-            var fileOne = new File { Name = "Doc1.docx" };
-            var fileTwo = new File { Name = "mypdf.pdf" };
-            var fileThree = new File { Name = "picture.jpg" };
-            var fileFour = new File { Name = "Renzo.gif" };
-            var fileFive = new File { Name = "Doc1.docx" };
-            var fileFolder = new Folder { Name = "MyFiles", Elements = { fileOne, fileTwo, fileThree, fileFive } };
-            var fileFolder2 = new Folder { Name = "MyFiles", Elements = { fileOne, fileTwo, fileThree, fileFive } };
-            var fileFolder3 = new Folder { Name = "MyFiles", Elements = { fileOne, fileTwo, fileThree, fileFive } };
-            var mainFolder = new Folder {Name = "MyFolder" , Elements = {fileFolder , fileFour, fileFolder2, fileFolder3 } };
-            //var mainFolder = CreateData();
+            var mainFolder = CreateDataFromDisk();
             mainFolder.DisplayAll();
             Console.ReadKey();
 
         }
-
-        public static Folder CreateData()
+        
+        public static Folder CreateDataFromDisk()
         {
-            var fileElements = new List<SystemElement>();
-            var folderElements = new List<SystemElement>();
+            string[] directories = System.IO.Directory.GetDirectories(GetPath(1));
 
-            for (var i = 0; i < 20; i++)
+            Folder rootFolder = new Folder() { Name = "RootFolder" };
+            foreach (string directory in directories)
             {
-                if (i % 5 != 0)
+                Folder folder = new Folder() { Name = new System.IO.FileInfo(directory).Name };
+                DirSearch(directory, folder);
+                rootFolder.AddElement(folder);
+            }
+            return rootFolder;
+        }
+
+
+        static void DirSearch(string sDir, Folder parentFolder)
+        {
+            try
+            {
+                foreach (string d in System.IO.Directory.GetDirectories(sDir))
                 {
-                    var file = new File { Name = $"Doc{i}.txt" };
-                    fileElements.Add(file);
-                }
-                else
-                {
-                    var folder = new Folder { Name = $"Folder{i}", Elements = fileElements };
-                    fileElements = new List<SystemElement>();
-                    if (folderElements.Count > 0)
+                    Folder subFolder = new Folder() { Name = new System.IO.FileInfo(d).Name };
+                    foreach (string f in System.IO.Directory.GetFiles(d))
                     {
-                        Folder lastFolder = folderElements.Last() as Folder;
-                        lastFolder?.Elements.Add(folder);
+                        subFolder.Elements.Add(new File() { Name = new System.IO.FileInfo(f).Name });
                     }
-                    folderElements.Add(folder);
+                    DirSearch(d, subFolder);
+                    parentFolder.Elements.Add(subFolder);
+                }
+                foreach (string f in System.IO.Directory.GetFiles(sDir))
+                {
+                    parentFolder.Elements.Add(new File() { Name = new System.IO.FileInfo(f).Name });
                 }
             }
-            
-            
-            var mainFolder = new Folder { Name = "RootFolder", Elements = folderElements };
-            return mainFolder;
+            catch (System.Exception excpt)
+            {
+                Console.WriteLine(excpt.Message);
+            }
         }
+        public static string GetPath(int levels)
+        {
+            string path = System.IO.Directory.GetParent(Environment.CurrentDirectory).ToString();
+            for (int i = 0; i < levels; i++)
+            {
+                path = System.IO.Directory.GetParent(path).ToString();
+            }
+            return path;
+        }
+
     }
 }

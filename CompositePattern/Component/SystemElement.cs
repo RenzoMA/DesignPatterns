@@ -11,7 +11,5 @@ namespace CompositePattern.Component
         public string Name { get; set; }
         protected ConsoleColor DefaultColor { get; set; }
         public abstract void Display(int separator);
-        
-
     }
 }
